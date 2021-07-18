@@ -1,92 +1,113 @@
 {% if site.data.social.share.facebook or site.theme_settings.share_buttons.facebook
-   or site.data.social.share.twitter or site.theme_settings.twitter
-   or site.data.social.share.tumblr or site.theme_settings.tumblr
-   or site.data.social.share.pinterest or site.theme_settings.pinterest
-   or site.data.social.share.pocket or site.theme_settings.pocket
-   or site.data.social.share.reddit or site.theme_settings.reddit
-   or site.data.social.share.linkedin or site.theme_settings.linkedin
-   or site.data.social.share.wordpress or site.theme_settings.wordpress
-   or site.data.social.share.email or site.theme_settings.email %}
-
-<div class="share-buttons">
-    <ul class="share-buttons">
-        <li class="meta">Share</li>
-        {% if site.data.social.share.facebook or site.theme_settings.share_buttons.facebook %}
-        <li>
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url }}" target="_blank"
-               title="{{ site.data.social.language.str_share_on }} Facebook">
-                <i class="fab fa-facebook-square fa-2x" aria-hidden="true"></i>
-                <span class="sr-only">{{ site.data.social.language.str_share_on | default: "Share on" }} Facebook</span>
-            </a>
-        </li>
-        {% endif %} {% if site.data.social.share.twitter or site.theme_settings.twitter %}
-        <li>
-            <a href="https://twitter.com/intent/tweet?text={{ page.title | strip_html | url_encode }}%20{{ page.url | absolute_url | url_encode }}"
-               target="_blank" title="{{ site.data.social.language.str_tweet }}">
-                <i class="fab fa-twitter-square fa-2x" aria-hidden="true"></i>
-                <span class="sr-only">{{ site.data.social.language.str_tweet | default: "Tweet" }}</span>
-            </a>
-        </li>
-        {% endif %} {% if site.data.social.share.tumblr or site.theme_settings.tumblr %}
-        <li>
-            <a href="https://www.tumblr.com/share?v=3&u={{ page.url | absolute_url }}&quote={{ page.title | url_encode }}%20%7C%20{{ site.title | strip_html | url_encode }}&s="
-               target="_blank" title="{{ site.data.social.language.str_share_on }} Tumblr">
-                <i class="fab fa-tumblr-square fa-2x" aria-hidden="true"></i>
-                <span class="sr-only">{{ site.data.social.language.str_share_on | default: "Share on" }} Tumblr</span>
-            </a>
-        </li>
-        {% endif %} {% if site.data.social.share.pinterest or site.theme_settings.pinterest %}
-        <li>
-            <a href="https://pinterest.com/pin/create/button/?url={{ page.url | absolute_url }}&media={{ page.feature-img | absolute_url }}$description={{ page.excerpt | strip_html | url_encode }}"
-               target="_blank" title="{{ site.data.social.language.str_pin_it }}">
-                <i class="fab fa-pinterest-square fa-2x" aria-hidden="true"></i>
-                <span class="sr-only">{{ site.data.social.language.str_pin_it | default: "Pin it" }}</span>
-            </a>
-        </li>
-        {% endif %} {% if site.data.social.share.pocket or site.theme_settings.pocket %}
-        <li>
-            <a href="https://getpocket.com/save?url={{ page.url | absolute_url }}&title={{ page.title | strip_html | url_encode }}%20%7C%20{{ site.title | strip_html | url_encode }}"
-               target="_blank" title="{{ site.data.social.language.str_add_to }} Pocket">
-            <span class="fa-stack fa-1x" style="vertical-align: top">
-              <i class="fas fa-square fa-stack-2x" aria-hidden="true"></i>
-              <i class="fab fa-get-pocket fa-stack-1x fa-inverse" aria-hidden="true"></i>
-            </span>
-                <span class="sr-only">{{ site.data.social.language.str_add_to | default: "Add to" }} Pocket</span>
-            </a>
-        </li>
-        {% endif %} {% if site.data.social.share.reddit or site.theme_settings.reddit %}
-        <li>
-            <a href="https://www.reddit.com/submit?url={{ page.url | absolute_url }}&title={{ page.title | strip_html | url_encode }}%20%7C%20{{ site.title | strip_html | url_encode }}"
-               target="_blank" title="{{ site.data.social.language.str_share_on }} Reddit">
-                <i class="fab fa-reddit-square fa-2x" aria-hidden="true"></i>
-                <span class="sr-only">{{ site.data.social.language.str_share_on | default: "Share on" }} Reddit</span>
-            </a>
-        </li>
-        {% endif %} {% if site.data.social.share.linkedin or site.theme_settings.linkedin %}
-        <li>
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absolute_url }}&title={{ page.title | strip_html | url_encode }}%20%7C%20{{ site.title | strip_html | url_encode }}&summary=&source={{ page.url | absolute_url }}"
-               target="_blank" title="{{ site.data.social.language.str_share_on }} LinkedIn">
-                <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
-                <span class="sr-only">{{ site.data.social.language.str_share_on | default: "Share on" }} LinkedIn</span>
-            </a>
-        </li>
-        {% endif %} {% if site.data.social.share.wordpress or site.theme_settings.wordpress %}
-        <li>
-            <a href="https://wordpress.com/press-this.php?u={{ page.url | absolute_url }}&quote={{ page.title | strip_html | url_encode }}%20%7C%20{{ site.title | strip_html | url_encode }}&s="
-               target="_blank" title="{{ site.data.social.language.str_share_on }} WordPress">
-                <i class="fab fa-wordpress fa-2x" aria-hidden="true"></i>
-                <span class="sr-only">{{ site.data.social.language.str_share_on | default: "Share on" }} WordPress</span>
-            </a>
-        </li>
-        {% endif %} {% if site.data.social.share.email or site.theme_settings.email %}
-        <li>
-            <a href="mailto:?subject={{ page.title }}%20%7C%20{{ site.title  }}&body={{ page.url | absolute_url }}"
-               target="_blank" title="{{ site.data.social.language.str_email }}">
-                <i class="fas fa-envelope-square fa-2x" aria-hidden="true"></i>
-                <span class="sr-only">{{ site.data.social.language.str_email | default: "Email" }}</span></a>
-        </li>
-        {% endif %}
-    </ul>
-</div>
-
-{% endif %}
+    or site.data.social.share.twitter or site.theme_settings.twitter
+    or site.data.social.share.tumblr or site.theme_settings.tumblr
+    or site.data.social.share.pinterest or site.theme_settings.pinterest
+    or site.data.social.share.pocket or site.theme_settings.pocket
+    or site.data.social.share.reddit or site.theme_settings.reddit
+    or site.data.social.share.linkedin or site.theme_settings.linkedin
+    or site.data.social.share.wordpress or site.theme_settings.wordpress
+    or site.data.social.share.email or site.theme_settings.email %}
+ 
+ {% comment %}Multilingual site title (if site.multilingual == true){% endcomment %}
+ {% if site.multilingual %}
+    {% assign site_title = site.title[site.active_lang] %}     
+ {% else %}
+    {% assign site_title = site.title %}
+ {% endif %}
+ 
+ {% comment %}Enable alternate word order for different languages (with "%s"=social media title){% endcomment %}
+ {% assign str_share_on = site.data.language.str_share_on %}
+ {% unless str_share_on contains "%s" %}
+     {% assign str_share_on = str_share_on | append: " " | append: "%s" %}
+     {% comment %}Default to appending social title to end if no "%s" is specified{% endcomment %}
+ {% endunless %}
+ 
+ {% assign str_add_to = site.data.language.str_add_to %}
+ {% unless str_add_to contains "%s" %}
+     {% assign str_add_to = str_add_to | append: " " | append: "%s" %}
+ {% endunless %}
+ 
+ 
+ <div class="share-buttons">
+     <ul class="share-buttons">
+         <li class="meta">{{ site.data.language.str_share | default: "Share" }}</li>
+         {% if site.data.social.share.facebook or site.theme_settings.share_buttons.facebook %}
+         <li>
+             <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url }}" target="_blank"
+                title="{{ str_share_on | replace: '%s', 'Facebook' }}">
+                 <i class="fab fa-facebook-square fa-2x" aria-hidden="true"></i>
+                 <span class="sr-only">{{ str_share_on | replace: '%s', 'Facebook' | default: "Share on Facebook" }}</span>
+             </a>
+         </li>
+         {% endif %} {% if site.data.social.share.twitter or site.theme_settings.twitter %}
+         <li>
+             <a href="https://twitter.com/intent/tweet?text={{ page.title | strip_html | url_encode }}%20{{ page.url | absolute_url | url_encode }}"
+                target="_blank" title="{{ site.data.language.str_tweet }}">
+                 <i class="fab fa-twitter-square fa-2x" aria-hidden="true"></i>
+                 <span class="sr-only">{{ site.data.language.str_tweet | default: "Tweet" }}</span>
+             </a>
+         </li>
+         {% endif %} {% if site.data.social.share.tumblr or site.theme_settings.tumblr %}
+         <li>
+             <a href="https://www.tumblr.com/share?v=3&u={{ page.url | absolute_url }}&quote={{ page.title | url_encode }}%20%7C%20{{ site_title | strip_html | url_encode }}&s="
+                target="_blank" title="{{ str_share_on | replace: '%s', 'Tumblr' }}">
+                 <i class="fab fa-tumblr-square fa-2x" aria-hidden="true"></i>
+                 <span class="sr-only">{{ str_share_on | replace: '%s', 'Tumblr' | default: "Share on Tumblr" }}</span>
+             </a>
+         </li>
+         {% endif %} {% if site.data.social.share.pinterest or site.theme_settings.pinterest %}
+         <li>
+             <a href="https://pinterest.com/pin/create/button/?url={{ page.url | absolute_url }}&media={{ page.feature-img | absolute_url }}$description={{ page.excerpt | strip_html | url_encode }}"
+                target="_blank" title="{{ site.data.language.str_pin_it }}">
+                 <i class="fab fa-pinterest-square fa-2x" aria-hidden="true"></i>
+                 <span class="sr-only">{{ site.data.language.str_pin_it | default: "Pin it" }}</span>
+             </a>
+         </li>
+         {% endif %} {% if site.data.social.share.pocket or site.theme_settings.pocket %}
+         <li>
+             <a href="https://getpocket.com/save?url={{ page.url | absolute_url }}&title={{ page.title | strip_html | url_encode }}%20%7C%20{{ site_title | strip_html | url_encode }}"
+                target="_blank" title="{{ str_add_to | replace: '%s', 'Pocket' }}">
+             <span class="fa-stack fa-1x" style="vertical-align: top">
+               <i class="fas fa-square fa-stack-2x" aria-hidden="true"></i>
+               <i class="fab fa-get-pocket fa-stack-1x fa-inverse" aria-hidden="true"></i>
+             </span>
+                 <span class="sr-only">{{ str_add_to | replace: '%s', 'Pocket' | default: "Add to Pocket" }}</span>
+             </a>
+         </li>
+         {% endif %} {% if site.data.social.share.reddit or site.theme_settings.reddit %}
+         <li>
+             <a href="https://www.reddit.com/submit?url={{ page.url | absolute_url }}&title={{ page.title | strip_html | url_encode }}%20%7C%20{{ site_title | strip_html | url_encode }}"
+                target="_blank" title="{{ str_share_on | replace: '%s', 'Reddit' }}">
+                 <i class="fab fa-reddit-square fa-2x" aria-hidden="true"></i>
+                 <span class="sr-only">{{ str_share_on | replace: '%s', 'Reddit' | default: "Share on Reddit" }}</span>
+             </a>
+         </li>
+         {% endif %} {% if site.data.social.share.linkedin or site.theme_settings.linkedin %}
+         <li>
+             <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absolute_url }}&title={{ page.title | strip_html | url_encode }}%20%7C%20{{ site_title | strip_html | url_encode }}&summary=&source={{ page.url | absolute_url }}"
+                target="_blank" title="{{ str_share_on | replace: '%s', 'LinkedIn' }}">
+                 <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+                 <span class="sr-only">{{ str_share_on | replace: '%s', 'LinkedIn' | default: "Share on LinkedIn" }}</span>
+             </a>
+         </li>
+         {% endif %} {% if site.data.social.share.wordpress or site.theme_settings.wordpress %}
+         <li>
+             <a href="https://wordpress.com/press-this.php?u={{ page.url | absolute_url }}&quote={{ page.title | strip_html | url_encode }}%20%7C%20{{ site_title | strip_html | url_encode }}&s="
+                target="_blank" title="{{ str_share_on | replace: '%s', 'WordPress' }}">
+                 <i class="fab fa-wordpress fa-2x" aria-hidden="true"></i>
+                 <span class="sr-only">{{ str_share_on | replace: '%s', 'WordPress' | default: "Share on WordPress" }}</span>
+             </a>
+         </li>
+         {% endif %} {% if site.data.social.share.email or site.theme_settings.email %}
+         <li>
+             <a href="mailto:?subject={{ page.title }}%20%7C%20{{ site_title  }}&body={{ page.url | absolute_url }}"
+                target="_blank" title="{{ site.data.language.str_email }}">
+                 <i class="fas fa-envelope-square fa-2x" aria-hidden="true"></i>
+                 <span class="sr-only">{{ site.data.language.str_email | default: "Email" }}</span></a>
+         </li>
+         {% endif %}
+     </ul>
+ </div>
+ 
+ {% endif %}
+ 

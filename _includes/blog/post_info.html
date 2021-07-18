@@ -1,4 +1,5 @@
 {% assign author = site.data.authors[include.author] %}
+{% assign date_format = site.data.language.date_format %}
 {% assign date = include.date | default: "today" | date: "%B %-d, %Y" %}
 
 <div class="post-info">
@@ -8,8 +9,12 @@
     {% endif %}
     <p class="meta">
       {% if author.name %}{{ author.name }} - {% endif %}
+
       {% assign x = date | date: "%m" | minus: 1 %}
-      {{ site.data.language.str_months[x] | default: date | date: "%B" }} {{ date | date: "%d, %Y" }}
+      {% assign month_str = site.data.language.str_months[x] | default: date | date: "%B" %} 
+      {% assign date_format = date_format | default: "%B %d, %Y" | replace: "%B", month_str %}
+    
+      {{ date | date: date_format }}
     </p>
   {%- if author.url -%}</a>{%- endif -%}
 </div>

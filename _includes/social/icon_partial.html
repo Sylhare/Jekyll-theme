@@ -1,0 +1,18 @@
+{% if include.isDisplayed %}
+
+{% if site.data.language.str_follow_on contains "%s" %}
+    {% assign a_title = site.data.language.str_follow_on | replace: "%s", include.social %}
+{% else %}
+    {% assign a_title = site.data.language.str_follow_on | default: "Follow on" | append: " " | append: include.social %}
+{% endif %}
+
+<li>
+    <a href="{{ include.url }}"
+       title="{{ a_title }}">
+		<span class="fa-stack fa-lg">
+            <i class="fas fa-circle fa-stack-2x"></i>
+            <i class="fab fa-{{ include.social | downcase }} fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+</li>
+{% endif %}

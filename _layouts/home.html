@@ -2,11 +2,18 @@
 layout: default
 ---
 
+{% comment %}Multilingual header text (if `multilingual: true` in `_config.yml`){% endcomment %}
+{% if site.multilingual %}
+    {% assign site_header_text = site.header_text[site.active_lang] %}
+{% else %}
+    {% assign site_header_text = site.header_text %}
+{% endif %}
+    
 <div class="home">
 
     <div id="main" class="call-out"
          style="background-image: url('{{ site.header_feature_image | relative_url }}')">
-        <h1> {{ site.header_text | default: "Change <code>header_text</code> in <code>_config.yml</code>"}} </h1>
+        <h1> {{ site_header_text | default: "Change <code>header_text</code> in <code>_config.yml</code>"}} </h1>
     </div>
 
     {% include blog/blog.html %}

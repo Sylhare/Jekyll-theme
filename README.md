@@ -1,10 +1,64 @@
-# Type on Strap 🎨
+# Type on Strap (modified for multilingual use) 🎨
 
 [![Build](https://github.com/sylhare/Type-on-Strap/actions/workflows/jekyll-build.yml/badge.svg)](https://github.com/sylhare/Type-on-Strap/actions/workflows/jekyll-build.yml)
 [![Gem Version](https://badge.fury.io/rb/type-on-strap.svg)](https://badge.fury.io/rb/type-on-strap)
 [![Docker Pulls](https://img.shields.io/docker/pulls/sylhare/type-on-strap)](https://hub.docker.com/r/sylhare/type-on-strap)
 
 [![Default Type on Strap blog](https://github.com/Sylhare/Type-on-Strap/blob/master/assets/img/screenshot.png?raw=true)](https://sylhare.github.io/Type-on-Strap/)
+
+
+-------------------
+
+# Type-on-Strap with multilingual support
+
+This is a modified version of the original [Type-on-Strap](https://github.com/sylhare/Type-on-Strap) which has  specially adapted features to support multilingual use, particularly with the [Jekyll Polyglot plugin](https://github.com/untra/polyglot)
+
+[Continue to original README portion](#original-readme-file)
+
+## Multilingual support
+
+Can be used in conjunction with the multilingual [polyglot plugin](https://github.com/untra/polyglot).  
+For those who don't need multilingual support / support for localizing other languages, ***the previous settings/default behavior should continue to apply***&mdash;at least to my knowledge.
+
+### Features / usage:
+
+- Multilingual features can be enabled by including `multilingual: true` in `_config.yml`  
+If not set, the previous default behavior continues to apply
+- If one doesn't have a multilingual site but wants to use a language other than English, one can set the language in `_config.yml` using `language: `, e.g. `language: de`  
+That way, the `<html lang=...>` tag at the top of each page will reflect the language one is using.  
+- Date formats can be localized/customized in `language.yml`, e.g. `date_format: "%d. %B, %Y"`.  
+If one is using the polyglot plugin, one can place a `language.yml` file each into a separate directory for each language in `_data`, e.g. `_data/en/language.yml`, `_data/de/language.yml`---polyglot will automatically fetch the date_format (as well as all the other strings) according to the currently selected language.  
+Otherwise, one can of course customize the date format (for a one-language site) in `_data/language.yml`   
+- Capability to customize the  word order of localized strings strings with `"%s"`:  in languages other than English, this will sometimes be necessary, i.e. in German, "Auf Facebook folgen" is grammatically better than "Folgen auf Facebook"
+This can now easily be implemented  by adding for example, ` str_follow_on: "Auf %s folgen"`  to the `language.yml` data file. The same can be done with `str_add_to`.
+If no `"%s"` is specified in the localization string, the default behaviour of
+appending it to the end will be applied.  
+Also added `str_share` to `language.yml`---so that this can also be localized/translated if needed.  
+- Language switcher in navbar: the language names need to be configured in _data/lang-names in order in implement this, e.g.:
+```yaml
+en: "English"
+de: "Deutsch"
+```
+- Site title, description, header_text and footer_text are rendered according to the currently selected language (if `multilingual: true` is set). In order for this to work, one must create an entry for each language for each of the four site variables, e.g.:
+```yaml
+title:
+  en: Site title
+  de: Titel der Website
+description:
+  en: About this website
+  de: Über diese Webseite
+...
+
+
+```
+
+Suggestions for improvement and  / or corrections are welcome.
+
+-----------------------------------------
+
+# Original README file
+
+
 
 A free and open-source [Jekyll](https://jekyllrb.com) theme. Based on Rohan Chandra [type-theme](https://github.com/rohanchandra/type-theme) packed with extra features and easily customizable:
 

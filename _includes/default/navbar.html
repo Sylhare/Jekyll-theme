@@ -1,4 +1,27 @@
 <header class="site-header">
+    {% comment %}Multilingual site title (if `multilingual: true` in `_config.yml`){% endcomment %}
+    {% if site.multilingual %}
+        {% if site.plugins contains "jekyll-polyglot" %}
+            <link rel="alternate"
+                hreflang="{{site.default_lang}}"
+                href="http://yoursite.com{{page.permalink}}" />
+            {% for lang in site.languages %}
+            {% if lang == site.default_lang %}
+                {% continue %}
+            {% endif %}
+            <link rel="alternate"
+                hreflang="{{lang}}"
+                href="http://yoursite.com/{{lang}}{{page.permalink}}" />
+            {% endfor %}
+            {% comment %}
+                Activate polyglot's Seo features---according to https://polyglot.untra.io/seo/
+                Unfortunately, the I18n_Headers tag will throw an error, even if I add a conditional check for the presence of jekyll-polyglot. Too bad.
+            {% endcomment %}
+        {% endif %}
+        {% assign site_title = site.title[site.active_lang] %}     
+    {% else %}
+        {% assign site_title = site.title %}
+    {% endif %}
 
     <!-- Logo and title -->
 	<div class="branding">
@@ -7,8 +30,8 @@
 			<img alt="logo img" class="avatar" src="{{ site.avatar | relative_url }}" />
 		</a>
         {% endif %}
-        <a class="site-title" aria-label="{{ site.title }}" href="{{ '/' | relative_url }}">
-        {{ site.title }}
+        <a class="site-title" aria-label="{{ site_title }}" href="{{ '/' | relative_url }}">
+        {{ site_title }}
 		</a>
 	</div>
 
@@ -35,9 +58,21 @@
             {% assign name_page = page.title | append: name_page %}
         {% endfor %}
         
+        <!-- Light/Dark mode switcher -->
         {% if site.color_theme == 'auto' %}
         <li class="separator"> | </li>
-        <li><a id="theme-toggle" title="{{ page.title }} " aria-label="{{ page.title }}" onclick="themeToggle()"></a></li>
+        <li><a id="theme-toggle" title="{{ page.title }} "aria-label="{{ page.title }}" onclick="themeToggle()"></a></li>
+        {% endif %}
+
+        <!-- Language switcher -->
+        {% if site.multilingual %}
+            {% comment %}Takes language names from _data/lang-names.yml{% endcomment %}
+            {% for lang in site.languages %}
+                <li class="separator"> | </li>
+                <li>
+                    <a {% if lang == site.active_lang %}style="font-weight: bold;"{% endif %} href="{% if lang == site.default_lang %} {{ site.baseurl }}{{ page.url }} {% else %} {{ site.baseurl }}/{{ lang }}{{ page.url }} {% endif %}">{{ site.data.lang-names[lang] }}</a>
+                </li>
+            {% endfor %}
         {% endif %}
     </ul>
 

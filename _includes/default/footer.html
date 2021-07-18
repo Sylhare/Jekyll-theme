@@ -1,6 +1,13 @@
+{% comment %}Multilingual footer_text: only enabled if _config.yml contains `multilingual: true`{% endcomment %}
+{% if site.multilingual %}
+    {% assign site_footer_text = site.footer_text[site.active_lang] %}
+{% else %}
+    {% assign site_footer_text = site.footer_text %}
+{% endif %}
+
 <footer class="site-footer">
     <p class="text">
-        {{ site.footer_text | default: "Powered by <a href='https://jekyllrb.com/'>Jekyll</a> with <a href='https://github.com/sylhare/Type-on-Strap'>Type on Strap</a>" }}</p>
+        {{ site_footer_text | default: "Powered by <a href='https://jekyllrb.com/'>Jekyll</a> with <a href='https://github.com/sylhare/Type-on-Strap'>Type on Strap</a>" }}</p>
             <div class="footer-icons">
                 <ul>
                 <!-- Social icons from Font Awesome, if enabled -->
@@ -8,5 +15,3 @@
                 </ul>
             </div>
 </footer>
-
-

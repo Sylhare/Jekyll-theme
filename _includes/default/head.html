@@ -2,6 +2,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=5">
 
+    {% comment %} 
+        Multilingual site title, description and header text---only if `multilingual: true` is set in `_config.yml`
+    {% endcomment %}
+    {% if site.multilingual %}
+        {% assign site_title = site.title[site.active_lang] %}
+        {% assign site_description = site.description[site.active_lang] %}
+        {% assign site_header_text = site.header_text[site.active_lang] %}
+    {% else %}
+        {% assign site_title = site.title %}
+        {% assign site_description = site.description %}
+        {% assign site_header_text = site.header_text %}
+    {% endif %}
+
+
     <!-- Theme Mode-->
     {% if site.color_theme == 'auto' %}
     <script>
@@ -25,7 +39,7 @@
     <link rel="shortcut icon" href="{{ site.favicon | relative_url }}" type="image/x-icon">
 
     <!-- RSS -->
-    <link rel="alternate" type="application/atom+xml" title="{{ site.title | default: 'Title' }}" href="{{ 'feed.xml' | absolute_url }}"/>
+    <link rel="alternate" type="application/atom+xml" title="{{ site_title | default: 'Title' }}" href="{{ 'feed.xml' | absolute_url }}"/>
 
     {% if page.bootstrap %}
     <!-- Bootstrap-4.1.3 isolation CSS -->
@@ -76,19 +90,25 @@
     {% unless page.layout == post %}
     <meta property="og:type" content="website" />
     {% endunless %}
-    {% seo %}
-
+    {% if site.multilingual %}
+        {% seo title=false %}
+        {% comment %}Display browser tab's title according to the currently selected language{% endcomment %}
+        <title>{{ site_title }} | {{ site_description }}</title>
+    {% else %}
+        {% seo %}
+    {% endif %}
+    
     <!-- RSS -->
     {% feed_meta %}
 
     <!-- Twitter Cards -->
-    <meta name="twitter:title" content="{{ page.title | default: site.title }}">
-    <meta name="twitter:description" content="{{ page.content | strip_html | strip_newlines | truncate: 160 | default: site.header_text}}">
+    <meta name="twitter:title" content="{{ page.title | default: site_title }}">
+    <meta name="twitter:description" content="{{ page.content | strip_html | strip_newlines | truncate: 160 | default: site_header_text}}">
     {% if site.data.social.twitter %}
     <meta name="twitter:creator" content="@{{ site.data.social.twitter }}">
     <meta name="twitter:site" content="@{{ site.data.social.twitter }}">
     {% endif %}
     <meta name="twitter:card" content="{% unless page.thumbnail %}summary{% else %}summary_large_image{% endunless %}">
     <meta name="twitter:image" content="{{ '/' | absolute_url }}{% if page.thumbnail %}{{ page.thumbnail }}{% else %}{{ page.feature-img | default: site.header_feature_image }}{% endif %}">
-    <meta name="twitter:image:alt" content="{{ page.title | default: site.title }}">
+    <meta name="twitter:image:alt" content="{{ page.title | default: site_title }}">
 </head>

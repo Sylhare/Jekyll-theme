@@ -4,7 +4,13 @@
     Theme free for personal and commercial use under the MIT license
     https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
 -->
-<html lang="en">
+{% if site.multilingual %}
+  {% assign lang = site.active_lang | default: site.default_lang | default: "en" %}
+{% else %}
+  {% assign lang = site.language | default: "en" %}
+{% endif %}
+
+  <html lang="{{ lang }}">
   {% include default/head.html %}
   <body>
     {% include default/navbar.html %}

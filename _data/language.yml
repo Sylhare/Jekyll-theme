@@ -1,6 +1,7 @@
 # Localization strings
 str_follow_on: "Follow on"
 str_rss_follow: "Follow RSS feed"
+str_share: "Share"
 str_share_on: "Share on"
 str_add_to: "Add to"
 str_email: "Email"
@@ -18,3 +19,4 @@ str_months: [January, February, March, April, May, June, July, August, September
 
 # Localization settings 
 cusdis_lang: # zh-cn, es, tr, pt-BR
+date_format: "%B %d, %Y"

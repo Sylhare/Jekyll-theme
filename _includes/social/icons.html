@@ -20,9 +20,22 @@
         {% else %}
             {% assign icon = data.icon %}
         {% endif %}
+
+        {% comment %}
+        #############
+            The following is for localization of word order (can be customized with %s
+        {% endcomment %}
+
+        {% assign social_tag = brand | remove: '-' | capitalize %}
+
+        {% if site.data.language.str_follow_on contains "%s" %}
+            {% assign a_title = site.data.language.str_follow_on | replace: "%s", social_tag %}
+        {% else %}
+            {% assign a_title = site.data.language.str_follow_on | default: "Follow on" | append: " " | append: social_tag %}
+        {% endif %}
         <li>
             <a href="{{ data.pre | append: id | append: data.pos }}"
-               title="{{ site.data.language.str_follow_on }} {{ brand | remove: '-' | capitalize }}"
+               title="{{ a_title }}"
                rel="me">
             <span class="fa-stack fa-lg">
               <i class="fas fa-circle fa-stack-2x"></i>
